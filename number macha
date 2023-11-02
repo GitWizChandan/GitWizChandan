@@ -1,67 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Number World</title>
+    <title>Guess the Number Game</title>
     <style>
         body {
-            background-color: black; /* Set the background color to black */
-            color: white; /* Set text color to white */
-        }
-        .hidden {
-            display: none;
-        }
-        .naruto {
-            width: 1000px;
-            height: 700px;
-            background-image: url('https://gifdb.com/images/high/cheer-up-brown-and-cony-busy-work-7igk9hv9gruteig3.gif');
+            background-image: '143.jpg'; /* Replace 'background.jpg' with your image file */
             background-size: cover;
-            animation: run 10s linear infinite;
+            text-align: center;
+            font-family: Arial, sans-serif;
         }
-        .win-animation {
-            animation: linear 10s linear infinite; /* Define a spinning animation for winning */
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            display: inline-block;
         }
-        @keyframes run {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: -1000px 0;
-            }
-        }
-        @keyframes linear {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+
+        input[type="number"] {
+            width: 100px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Number World</h1>
-    <form action="javascript:void(0);" onsubmit="checkNumber();">
-        <label for="number">Enter a number between 0 and 10: </label>
-        <input type="number" id="userNumber" min="0" max="10" required>
-        <button type="submit">Check</button>
-    </form>
-    <p id="result"></p>
-    <div id="naruto" class="hidden naruto"></div>
+    <div class="container">
+        <h1>Guess the Number Game</h1>
+        <p>Give any number between 0 to 10:</p>
+        <input type="number" id="userNumber" min="0" max="10">
+        <button onclick="checkNumber()">Check</button>
+        <p id="result"></p>
+    </div>
+
     <script>
         function checkNumber() {
-            const userNumber = document.getElementById("userNumber").value;
+            const userNumber = parseInt(document.getElementById("userNumber").value);
             const random_number = Math.floor(Math.random() * 11);  // Generate a random number between 0 and 10
             const result = document.getElementById("result");
-            const naruto = document.getElementById("naruto");
 
-            if (parseInt(userNumber) === random_number) {
+            if (userNumber === random_number) {
                 result.textContent = "Congratulations! You won the game.";
-                naruto.style.display = "none";
-                naruto.classList.remove("win-animation");
             } else {
-                result.textContent = "Sorry, you didn't win. Try again!";
-                naruto.style.display = "block";
-                naruto.classList.add("win-animation");
+                result.textContent = "Sorry, you didn't win. Give it another shot.";
             }
         }
     </script>
